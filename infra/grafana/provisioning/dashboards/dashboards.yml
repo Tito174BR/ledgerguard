@@ -1,0 +1,7 @@
+apiVersion: 1
+providers:
+  - name: LedgerGuard
+    folder: LedgerGuard
+    type: file
+    options:
+      path: /var/lib/grafana/dashboards

@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 15s
+scrape_configs:
+  - job_name: ledgerguard-api
+    static_configs: [{ targets: ['api:3333'] }]
+    metrics_path: /metrics
+  - job_name: ingestion-worker
+    static_configs: [{ targets: ['ingestion-worker:3334'] }]
+    metrics_path: /metrics
+  - job_name: fraud-worker
+    static_configs: [{ targets: ['fraud-worker:3334'] }]
+    metrics_path: /metrics
+  - job_name: reconciliation-worker
+    static_configs: [{ targets: ['reconciliation-worker:3334'] }]
+    metrics_path: /metrics
+  - job_name: settlement-worker
+    static_configs: [{ targets: ['settlement-worker:3334'] }]
+    metrics_path: /metrics

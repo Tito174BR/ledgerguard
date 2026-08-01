@@ -1,0 +1,32 @@
+{
+  "name": "ledgerguard",
+  "version": "1.0.3",
+  "private": true,
+  "packageManager": "pnpm@10.13.1",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "typecheck": "turbo typecheck",
+    "test": "turbo test",
+    "lint": "turbo lint",
+    "format": "prettier --write .",
+    "db:migrate": "pnpm --filter @ledgerguard/api db:migrate",
+    "db:seed": "pnpm --filter @ledgerguard/api db:seed",
+    "smoke": "node scripts/smoke-test.mjs",
+    "check": "pnpm typecheck && pnpm test && pnpm build"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "prettier": "^3.6.2",
+    "turbo": "^2.5.6",
+    "typescript": "^5.9.2"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "argon2"
+    ]
+  }
+}

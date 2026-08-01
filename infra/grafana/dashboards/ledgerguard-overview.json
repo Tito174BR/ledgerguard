@@ -1,0 +1,71 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "graphTooltip": 1,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "API latency",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "rate(ledgerguard_http_duration_seconds_sum[5m]) / rate(ledgerguard_http_duration_seconds_count[5m])",
+          "legendFormat": "latency"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Worker jobs",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 0
+      },
+      "targets": [
+        {
+          "expr": "sum by(worker,status) (rate(ledgerguard_ingestion_jobs_total[5m]) + rate(ledgerguard_fraud_jobs_total[5m]) + rate(ledgerguard_reconciliation_jobs_total[5m]) + rate(ledgerguard_settlement_jobs_total[5m]))",
+          "legendFormat": "{{worker}} / {{status}}"
+        }
+      ]
+    },
+    {
+      "type": "logs",
+      "title": "Container logs",
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "datasource": {
+        "type": "loki",
+        "uid": "Loki"
+      },
+      "targets": [
+        {
+          "expr": "{container=~\".*ledgerguard.*\"}"
+        }
+      ]
+    }
+  ],
+  "schemaVersion": 39,
+  "tags": [
+    "ledgerguard"
+  ],
+  "time": {
+    "from": "now-6h",
+    "to": "now"
+  },
+  "title": "LedgerGuard Overview",
+  "uid": "ledgerguard-overview",
+  "version": 1
+}
